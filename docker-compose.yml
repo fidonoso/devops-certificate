@@ -1,0 +1,48 @@
+
+services:
+  terraform:
+    build:
+      context: .
+      dockerfile: DockerfileTerraform
+    container_name: terraform-docker-container2
+    volumes:
+      - ./terraform:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+      # - ./html:/html
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    working_dir: /workspace
+    networks:
+      - cert_network
+
+
+  app:
+    build:
+      context: . # Ruta donde está el Dockerfile para mi app java
+      dockerfile: Dockerfile # Nombre del Dockerfile (opcional si es "Dockerfile")
+    container_name: miapp1
+    # ports:
+    #   - "8080:8080" # Mapea el puerto del contenedor al host (opcional si no usas un puerto)
+    stdin_open: true # Mantiene el contenedor vivo
+    tty: true        # Necesario para sesiones interactivas
+    networks:
+      - cert_network
+  
+networks:
+  cert_network:
+    name: cert_network
+  
+
+# docker ps -a --filter "name=terraform"
+
+# docker-compose down -v
+
+# docker network rm nginx_network
+# docker-compose up -d --build
+# docker-compose run --rm terraform init
+# docker-compose run --rm terraform plan
+# docker-compose run --rm terraform apply
+
+# docker-compose run --rm terraform destroy
+
+# docker logs -f nginx-1 | Select-String "GET"

@@ -1,0 +1,35 @@
+# Ignorar la carpeta de pruebas de la app Java
+src/test/
+
+# vs code
+.vscode
+# Ignorar directorios y archivos generados por Maven
+target/
+*.log
+*.class
+
+# Ignorar configuraciones locales de IDE
+*.iml
+.idea/
+.vscode/
+*.swp
+
+# Ignorar archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos temporales y de configuración personal
+*.bak
+*.tmp
+
+# Ignorar archivos y directorios de Terraform excepto main.tf
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+.crash.log
+*.plan
+terraform.tfvars.json
+
+# Ignorar claves o credenciales sensibles
+.env
